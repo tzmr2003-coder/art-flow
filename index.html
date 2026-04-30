@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Flow Group | קבוצת הנדסה, תשתיות כבדות ופרוייקטים הנדסיים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #030303;
+            --card-bg: #09090b;
+            --text-main: #fcfcfc;
+            --text-muted: #e4e4e7;
+            
+            /* צבעי מחלקות - גלואו עמוק */
+            --glow-water: rgba(14, 165, 233, 0.5); /* כחול תשתיות */
+            --glow-fire: rgba(239, 68, 68, 0.5);  /* אדום ספרינקלרים */
+            --glow-ac: rgba(6, 182, 212, 0.5);    /* תכלת מיזוג */
+            --glow-gold: rgba(234, 179, 8, 0.5);   /* זהב גימור */
+            --primary-accent: #eab308; /* זהב ראשי */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
+
+        /* --- הדר דביק --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-accent); }
+
+        /* --- אזור הפתיחה (Hero) האימפריאלי --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(rgba(3,3,3,0.7), rgba(3,3,3,0.7)),
+                        url('https://images.unsplash.com/photo-1541976844346-f18aeac57b06?q=80&w=2000') center/cover no-repeat fixed;
+        }
+        .hero-content { max-width: 1100px; z-index: 2; }
+        .main-title {
+            font-size: clamp(3rem, 12vw, 8rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-accent) 0%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-text { font-size: 1.8rem; font-weight: 300; color: var(--text-muted); margin-bottom: 50px; max-width: 900px; margin: 0 auto 50px auto;}
+
+        /* --- "החזון ההנדסי" (Deep Vision) --- */
+        .vision-section {
+            padding: 100px 20px;
+            background: var(--card-bg);
+            position: relative;
+            z-index: 1;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 60px auto 0 auto;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.02);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        .stat-box:hover {
+            border-color: var(--primary-accent);
+            background: rgba(234, 179, 8, 0.05);
+            transform: translateY(-10px);
+        }
+        .stat-icon { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 20px; }
+        .stat-number { font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1;}
+
+        /* --- רשת המחלקות הצבעונית (The Colorful Empire Grid) --- */
+        .empire-grid {
+            padding: 80px 20px;
+            background: #000;
+        }
+        .empire-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .empire-card {
+            background: #070707;
+            padding: 50px 40px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #111;
+            transition: all 0.5s ease-out;
+            cursor: pointer;
+        }
+        
+        /* אפקטי הגלואו הצבעוניים */
+        .empire-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .water-card:hover { border-color: #0ea5e9; box-shadow: 0 10px 50px var(--glow-water); }
+        .water-card:hover::after { background: radial-gradient(circle at center, var(--glow-water), transparent 70%); opacity: 1; }
+        .fire-card:hover { border-color: #ef4444; box-shadow: 0 10px 50px var(--glow-fire); }
+        .fire-card:hover::after { background: radial-gradient(circle at center, var(--glow-fire), transparent 70%); opacity: 1; }
+        .ac-card:hover { border-color: #06b6d4; box-shadow: 0 10px 50px var(--glow-ac); }
+        .ac-card:hover::after { background: radial-gradient(circle at center, var(--glow-ac), transparent 70%); opacity: 1; }
+        .gold-card:hover { border-color: var(--primary-accent); box-shadow: 0 10px 50px var(--glow-gold); }
+        .gold-card:hover::after { background: radial-gradient(circle at center, var(--glow-gold), transparent 70%); opacity: 1; }
+
+        .empire-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            line-height: 1;
+            transition: 0.3s;
+        }
+        .water-card:hover h3 { color: #0ea5e9; }
+        .fire-card:hover h3 { color: #ef4444; }
+        .ac-card:hover h3 { color: #06b6d4; }
+        .gold-card:hover h3 { color: var(--primary-accent); }
+
+        .empire-card p {
+            color: #ccc;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        .card-data { margin-top: 30px; display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 20px;}
+        .data-item { color: #888; font-size: 0.95rem; }
+
+        /* --- גלריה מלאה (The Advanced Showcase) --- */
+        .showcase {
+            padding: 100px 20px;
+            background: var(--dark-bg);
+        }
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        .showcase-item {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.6s ease;
+            filter: grayscale(100%) brightness(50%);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .showcase-item:hover {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* --- כפתורים וממשק --- */
+        .btn {
+            display: inline-block;
+            background: var(--text-main);
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 2px solid #fff;
+            margin-top: 40px;
+        }
+        .btn:hover { background: #000; color: #fff; border-color: #fff; transform: translateY(-5px); }
+
+        .whatsapp-btn {
+            background: #25d366; color: #fff; border-color: #25d366; margin-top: 20px; text-align: center; width: 100%;
+            display: block; padding: 15px; border-radius: 10px;
+        }
+        .whatsapp-btn:hover { background: #fff; color: #25d366; border-color: #25d366; }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25d366;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: 0.4s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* --- פוטר ומעטפת יצירת קשר --- */
+        footer {
+            background: var(--card-bg);
+            padding: 100px 30px 50px 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        
+        .footer-logo { font-size: 3rem; font-weight: 900; color: var(--primary-accent); margin-bottom: 20px; }
+        .footer-contact-box { background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; max-width: 600px; margin: 40px auto; border: 1px solid rgba(255,255,255,0.05);}
+        .contact-data { margin-bottom: 15px; display: block; font-size: 1.1rem; color: #ccc; text-decoration: none;}
+
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/972500000000" class="whatsapp-float" target="_blank">
+        <svg width="40" height="40" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.96L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path></svg>
+    </a>
+
+    <header>
+        <div style="font-size: 2rem; font-weight: 900; color: #fff;">Art Flow Group</div>
+        <ul class="nav-links">
+            <li><a href="#hero">בית</a></li>
+            <li><a href="#vision">חזון הנדסי</a></li>
+            <li><a href="#empire">חטיבות אימפריה</a></li>
+            <li><a href="#showcase">פרוייקטים</a></li>
+            <li><a href="#contact">צור קשר</a></li>
+        </ul>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">THE NEW POWER</h1>
+            <p class="hero-text">קבוצת הנדסה ותשתיות כבדות. מזרימת מים وמיזוג תעשייתי, דרך מערכות כיבוי מתקדמות, ועד לאומנות גימור יוקרתית. אנחנו לא בונים – אנחנו מקימים.</p>
+            <a href="#empire" class="btn">גלה את העוצמה שלנו</a>
+        </div>
+    </section>
+
+    <section id="vision" class="vision-section">
+        <h2 style="font-size: 3rem; text-align: center;">הנדסה שמזיזה הרים</h2>
+        <p style="text-align: center; color: #aaa; font-size: 1.25rem; max-width: 800px; margin: 20px auto 0 auto;">Art Flow נולדה עבור פרוייקטים שלא מסתפקים ב"מספיק טוב". אנו משלבים ידע הנדסי עמוק, צמ"ה כבד, לייזר ומדידה אטומה להבטחת ביצוע כירורגי מקצה לקצה.</p>
+        <div class="stats-grid">
+            <div class="stat-box"><span class="stat-number">100%</span><p>דיוק הנדסי ומקצועי</p></div>
+            <div class="stat-box"><span class="stat-number">360°</span><p>מעטפת פתרונות תשתיות</p></div>
+            <div class="stat-box"><span class="stat-number">24/7</span><p>עמידה בתקנים מחמירים</p></div>
+            <div class="stat-box"><span class="stat-number">∞</span><p>מחויבות לאיכות</p></div>
+        </div>
+    </section>
+
+    <section id="empire" class="empire-grid">
+        <h2 style="font-size: 3.5rem; text-align: center; margin-bottom: 70px;">חטיבות האימפריה שלנו</h2>
+        <div class="empire-container">
+            
+            <div class="empire-card water-card">
+                <h3>💧 חטיבת תשתיות וביוב</h3>
+                <p>הקמת מערכות תיעול, מים וביוב בקטרים תעשייתיים. עבודת צמ"ה כבד מורכבת, חפירות עומק وتכנון שיפועים לייזר. אנחנו מנהלים את הפרויקטים ה"מלוכלכים" בצורה הכי נקייה, מהירה ויעילה, עם אפס תקלות לטווח ארוך.</p>
+                <div class="card-data">
+                    <span class="data-item">צמ"ה כבד</span>
+                    <span class="data-item">לייזר אטום</span>
+                    <span class="data-item">כשל אפס</span>
+                </div>
+            </div>
+
+            <div class="empire-card fire-card">
+                <h3>🔥 חטיבת כיבוי אש (ספרינקלרים)</h3>
+                <p>התקנת מערכות כיבוי, צנרת לחץ וזרימה הידראולית בהתאם לתקני הבטיחות המחמירים ביותר (NFPA). אנו מספקים פתרונות מורכבים לחניונים, מפעלים وמוסדות, תוך שילוב המערכת כאסתטיקה תעשייתית בחלל.</p>
+                <div class="card-data">
+                    <span class="data-item">NFPA תקין</span>
+                    <span class="data-item">צנרת לחץ</span>
+                    <span class="data-item">זרימה אופטימלית</span>
+                </div>
+            </div>
+
+            <div class="empire-card ac-card">
+                <h3>❄️ חטיבת מערכות מיזוג אוויר (HVAC)</h3>
+                <p>תכנון, הקמה וביצוע של מערכות מיזוג אוויר מורכבות VRF, Chillers وמיזוג מרכזי למגזר התעשייתי. שליטה מלאה בטמפרטורה, לחצים وזרימת אוויר. אנחנו משלבים ידע טכנולוגי עמוק כדי להבטיח אקלים מושלם ויעילות אנרגטית מקסימלית.</p>
+                <div class="card-data">
+                    <span class="data-item">VRF מערכות</span>
+                    <span class="data-item">Chillrs מתקדם</span>
+                    <span class="data-item">יעילות אנרגטית</span>
+                </div>
+            </div>
+
+            <div class="empire-card gold-card">
+                <h3>✨ חטיבת אומנות גימור יוקרתית</h3>
+                <p>השלב שבו השלד הופך למאסטרפיס. ביצוע עבודות גמר יוקרתיות ברמת המילימטר למגזר הפרטי והעסקי. טיפול בטקסטורות, צבע, חלוקת חללים ושילוב מערכות חכמות בתוך עיצוב פנים נקי, מודרני וחסר פשרות.</p>
+                <div class="card-data">
+                    <span class="data-item">רמת מפתח</span>
+                    <span class="data-item">עיצוב מודרני</span>
+                    <span class="data-item">דיוק מילימטרי</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="showcase" class="showcase">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 50px;">חשיפת העוצמה בשטח</h2>
+        <div class="showcase-grid">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" alt="תשתיות עומק כבדות" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800" alt="צנרת ספרינקלרים וכיבוי" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800" alt="אומנות הגימור והעיצוב" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1518399586326-8c4d29f1b402?q=80&w=800" alt="מיזוג אוויר תעשייתי" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="בנייה הנדסית כבדה" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1629895044453-33e54b6c382f?q=80&w=800" alt="תשתית מים ותיעול" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1579294916246-2f6385434d2a?q=80&w=800" alt="הקמת פרוייקטים כבדים" class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1634812836230-0584b423f790?q=80&w=800" alt="אדריכלות הנדסית יוקרתית" class="showcase-item">
+        </div>
+    </section>
+
+    <section id="innovation" style="padding: 80px 20px; background: #000; border-top: 1px solid rgba(255,255,255,0.05);">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 50px;">חדשנות ודיוק כסטנדרט</h2>
+        <p style="text-align: center; color: #888; font-size: 1.2rem; max-width: 800px; margin: 0 auto 50px auto;">אנחנו משקיעים בטכנולוגיות החדשות ביותר למדידה וביצוע כדי להבטיח את התוצאות הטובות ביותר.</p>
+        <div style="display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;">
+            <div style="flex: 1 1 250px; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 1.8rem; font-weight: 700; color: #fff;">1. תכנון ואופטימיזציה</div>
+                <p style="color: #bbb; margin-top: 10px;">שימוש במידול הנדסי מתקדם לחישוב שיפועים וזרימות אוויר אופטימליות.</p>
+            </div>
+            <div style="flex: 1 1 250px; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 1.8rem; font-weight: 700; color: #fff;">2. ביצוע כירורגי</div>
+                <p style="color: #bbb; margin-top: 10px;">עבודה עם ציוד מדידה לייזר וציוד צמ"ה כבד מדויק להגשמת התוכניות.</p>
+            </div>
+            <div style="flex: 1 1 250px; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 1.8rem; font-weight: 700; color: #fff;">3. ניטור ותחזוקה</div>
+                <p style="color: #bbb; margin-top: 10px;">מעקב אקטיבי לאחר המסירה כדי להבטיח עמידות של התשתיות לאורך שנים.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-logo">Art Flow Group</div>
+        <p style="font-size: 1.3rem; color: #fff; margin-bottom: 40px; font-weight: 300;">הכוח המניע מאחורי הפרוייקטים הגדולים ביותר.</p>
+        
+        <div class="footer-contact-box">
+            <h3 style="color: #fff; margin-bottom: 25px;">בוא נקים את הפרויקט הבא שלך</h3>
+            <a href="mailto:office@artflow.co.il" class="contact-data">office@artflow.co.il</a>
+            <a href="tel:050-000-0000" class="contact-data">050-000-0000</a>
+            <p style="color: #888; font-size: 1rem;">אזורי שירות: מרכז, דרום, ירושלים וצפון</p>
+            <a href="https://wa.me/972500000000" class="whatsapp-btn" target="_blank">פתח ערוץ ישיר בוואטסאפ</a>
+        </div>
+        
+        <p style="color: #555; margin-top: 50px;">Art Flow Group &copy; 2026 | מיתוג הנדסי ותשתיות כבדות</p>
+    </footer>
+
+</body>
+              </html>
+      
