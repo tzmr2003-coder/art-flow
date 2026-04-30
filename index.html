@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Flow | הנדסת תשתיות ואומנות הגימור</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- הגדרות בסיס וצבעים --- */
+        :root {
+            --gold: #d4af37;
+            --gold-hover: #fcf6ba;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #b3b3b3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* מונע גלילה הצידה בטלפונים */
+        }
+
+        /* --- אזור כניסה (Header) --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* תמונת רקע כהה ויוקרתית של תשתיות בנייה */
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070') center/cover no-repeat;
+            padding: 20px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .logo-main {
+            font-size: clamp(3rem, 10vw, 5rem); /* גודל טקסט שמתאים את עצמו אוטומטית למסך */
+            font-weight: 800;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: 300;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        /* --- כפתורים --- */
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark-bg);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--gold-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* --- אזור שירותים --- */
+        .services-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--gold);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 10px;
+            border-right: 4px solid var(--gold);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: #222222;
+        }
+
+        .service-card h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* --- אזור גלריה בסיסי --- */
+        .gallery-section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            border-color: var(--gold);
+        }
+
+        /* --- תחתית האתר (Footer) --- */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="logo-main">ART FLOW</h1>
+        <p class="tagline">זרימה של איכות • גימור של אומנות</p>
+        
+        <a href="https://wa.me/972500000000" class="cta-button" target="_blank">קבלת הצעת מחיר בוואטסאפ</a>
+    </header>
+
+    <section class="services-section">
+        <h2 class="section-title">תחומי <span>המומחיות</span> שלנו</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <h3>🏗️ תשתיות כבדות וביוב</h3>
+                <p>ביצוע עבודות תשתית, תיעול וניקוז למגזר ההנדסי. עבודה מדויקת ונקייה עם ציוד מכני הנדסי כבד, תוך הקפדה על תקנים מחמירים ושיפועים בלייזר.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>🔥 מערכות כיבוי אש וספרינקלרים</h3>
+                <p>תכנון והתקנת מערכות ספרינקלרים בסטנדרט תעשייתי. בטיחות מקסימלית פוגשת הנדסה חכמה ואסתטיקה של מערכות גלויות ונסתרות.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>💧 הנדסת מים</h3>
+                <p>הקמת קווי מים ראשיים וצנרת בקטרים גדולים. פתרונות מתקדמים, נקיים ומסודרים למערכות מורכבות ללא פשרות על איכות החיבורים.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>✨ אומנות הגימור</h3>
+                <p>מליטוש שלד ועד למסירת המפתח. גימור מדויק ברמת המילימטר לדירות, משרדים וחללים מסחריים שהופך כל פרויקט ליצירת אמנות.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2 class="section-title">גלריית <span>פרויקטים</span></h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000" alt="עבודות תשתית והנדסה" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1000" alt="אומנות הגימור ועיצוב" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=1000" alt="שלד ובנייה כבדה" class="gallery-img">
+        </div>
+    </section>
+
+    <footer>
+        <h2>Art Flow</h2>
+        <p>הנדסה | תשתיות כבדות | אומנות הגימור</p>
+        
+        <div class="footer-links">
+            <p>טלפון: <a href="tel:050-000-0000">050-000-0000</a></p>
+            
+            <p>מייל: <a href="mailto:office@artflow.co.il">office@artflow.co.il</a></p>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem; color: #666;">&copy; 2026 כל הזכויות שמורות ל-Art Flow</p>
+    </footer>
+
+</body>
+          </html>
+          
