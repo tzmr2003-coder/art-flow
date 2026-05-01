@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Flow Group | קבוצת הנדסה ותשתיות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8fafc;       /* לבן-אפרפר רקע נקי */
+            --bg-card: #ffffff;       /* לבן שלג לכרטיסיות */
+            --text-main: #0f172a;     /* כחול כהה מאוד (כמעט שחור) לטקסט */
+            --text-sec: #64748b;      /* אפור אלגנטי לטקסט משני */
+            --accent: #2563eb;        /* כחול הייטק חזק לכפתורים ודגשים */
+            --accent-hover: #1d4ed8;  
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Assistant', sans-serif; }
+        
+        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+
+        /* --- הדר נקי (Nav) --- */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        header h1 { font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: 1px; }
+        header span { color: var(--accent); }
+
+        /* --- אזור פתיחה (Hero הייטקי) --- */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-tag {
+            display: inline-block; background: #eff6ff; color: var(--accent);
+            padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.9rem;
+            margin-bottom: 20px; border: 1px solid #bfdbfe;
+        }
+        .hero h2 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: #0f172a; }
+        .hero p { font-size: 1.2rem; color: var(--text-sec); max-width: 600px; margin: 0 auto 40px auto; }
+
+        /* --- רשת שירותים (Bento Box Style) --- */
+        .services { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; font-weight: 800; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            background: #f1f5f9;
+            width: 70px; height: 70px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 18px; margin-bottom: 20px;
+        }
+        .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+        .card p { color: var(--text-sec); font-size: 1.05rem; }
+
+        /* --- טופס יצירת קשר נקי --- */
+        .booking-section { padding: 80px 20px; background: #ffffff; border-top: 1px solid var(--border); }
+        .form-container {
+            max-width: 550px; margin: 0 auto;
+            background: var(--bg-main); padding: 40px;
+            border-radius: 24px; border: 1px solid var(--border);
+        }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-main); font-size: 0.95rem; }
+        input, select, textarea {
+            width: 100%; padding: 15px; border-radius: 12px;
+            border: 1px solid #cbd5e1; background: #ffffff;
+            font-size: 1rem; color: var(--text-main); transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-submit {
+            background: var(--accent); color: white;
+            font-weight: 600; font-size: 1.2rem;
+            padding: 16px; width: 100%; border: none; border-radius: 12px;
+            cursor: pointer; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+        /* --- פוטר --- */
+        footer { padding: 40px 20px; text-align: center; color: var(--text-sec); border-top: 1px solid var(--border); }
+        
+        /* --- וואטסאפ צף --- */
+        .wa-float {
+            position: fixed; bottom: 30px; left: 30px;
+            background: #25d366; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 1000; transition: 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1) rotate(-5deg); }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ART <span>FLOW</span></h1>
+    </header>
+
+    <section class="hero">
+        <div class="hero-tag">הנדסה וביצוע פרויקטים</div>
+        <h2>הסטנדרט החדש <br>של תשתיות וגמר.</h2>
+        <p>פתרונות הנדסה חכמים למגזר העסקי והפרטי. מדיוק של צנרת עומק ועד לאסתטיקה של גמר יוקרתי – הכל במקום אחד.</p>
+        <a href="#contact-form" class="btn-submit" style="display: inline-block; width: auto; padding: 15px 40px; text-decoration: none;">התחל פרויקט</a>
+    </section>
+
+    <section class="services">
+        <h2 class="section-title">חטיבות ההנדסה שלנו</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>תשתיות וביוב</h3>
+                <p>עבודות עפר, מערכות ניקוז וצנרת בקטרים גדולים. ניהול כלי צמ"ה כבדים ומדידות לייזר לדיוק מרבי.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <h3>ספרינקלרים וכיבוי</h3>
+                <p>מערכות כיבוי אש מתקדמות, צנרת פלדה וחדרי משאבות בהתאמה מלאה לתקן 1596 ו-NFPA.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">❄️</div>
+                <h3>מיזוג אוויר</h3>
+                <p>הקמת מערכות אקלים תעשייתיות, VRF וצ'ילרים. תכנון זרימת אוויר אופטימלית וחיסכון באנרגיה.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📐</div>
+                <h3>אומנות הגימור</h3>
+                <p>עבודות גמר למבני יוקרה. טיפול בחיפויים, תאורה נסתרת ומסירת פרויקט ברמת מפתח מושלמת.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section" id="contact-form">
+        <div class="form-container">
+            <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 30px; font-weight: 800;">בואו נדבר על הפרויקט הבא</h2>
+            
+            <form action="הקישור_הסודי_שלך_כאן" method="POST">
+                <div class="input-group">
+                    <label>שם מלא או שם החברה</label>
+                    <input type="text" name="שם" required>
+                </div>
+                <div class="input-group">
+                    <label>מספר טלפון</label>
+                    <input type="tel" name="טלפון" required>
+                </div>
+                <div class="input-group">
+                    <label>תחום העבודה הנדרש</label>
+                    <select name="סוג_הפרויקט" required>
+                        <option value="" disabled selected>בחר מהרשימה...</option>
+                        <option value="תשתיות">תשתיות עומק וביוב</option>
+                        <option value="כיבוי_אש">מערכות ספרינקלרים</option>
+                        <option value="מיזוג">מיזוג אוויר ו-HVAC</option>
+                        <option value="גמר">עבודות גמר ופנים</option>
+                        <option value="אחר">פרויקט משולב / אחר</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>תיאור קצר (אופציונלי)</label>
+                    <textarea name="פרטים" rows="3"></textarea>
+                </div>
+                
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="ליד חדש מאתר Art Flow!">
+                
+                <button type="submit" class="btn-submit">שליחת פנייה</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Art Flow Group. כל הזכויות שמורות.</p>
+    </footer>
+
+    <a href="https://wa.me/972500000000" class="wa-float" target="_blank">
+        <svg width="30" height="30" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.96L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    </a>
+</body>
+</html>
