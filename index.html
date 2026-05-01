@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Art Flow Group | Engineering & Luxury Design</title>
+    
+    <meta name="description" content="Art Flow Group - קבוצת הנדסה וביצוע פרויקטי יוקרה. מומחים בשיפוצי פרימיום, חדרי רחצה וילה-סטייל, תשתיות עומק ומיזוג אוויר.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --primary-gold-dark: #8e6c2d;
+            --bg: #030508;
+            --bg-card: #0c1015;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --eng-blue: #1e3a8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Assistant', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+
+        @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { animation: revealUp 1.2s ease forwards; }
+
+        /* Typography Twists */
+        .eng-sub { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 0.85rem; letter-spacing: 3px; color: var(--primary-gold); text-transform: uppercase; display: block; margin-bottom: 5px; }
+
+        /* Header */
+        header {
+            background: rgba(3, 5, 8, 0.95); backdrop-filter: blur(20px);
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 2.2rem; font-weight: 900; color: #fff; letter-spacing: 2px; line-height: 1; }
+        .logo span { color: var(--primary-gold); }
+        .logo-sub { font-family: sans-serif; font-size: 0.65rem; letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase; margin-top: 5px;}
+
+        /* Hero Section */
+        .hero {
+            min-height: 95vh;
+            background: linear-gradient(rgba(3, 5, 8, 0.6), var(--bg)), 
+                        url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000') center/cover no-repeat fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+        }
+        .badge-premium { border: 1px solid var(--primary-gold); padding: 8px 20px; border-radius: 30px; color: var(--primary-gold); font-weight: 600; letter-spacing: 1px; margin-bottom: 30px; font-size: 0.9rem; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .hero h2 { font-size: 1.8rem; font-weight: 400; color: #ddd; margin-bottom: 40px; }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
+            color: #000; padding: 18px 50px; border-radius: 50px;
+            font-size: 1.2rem; font-weight: 900; text-decoration: none;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(197, 160, 89, 0.5); }
+
+        /* Engineering Division */
+        .engineering-sec { padding: 120px 5%; max-width: 1500px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .eng-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 40px; transition: 0.4s; }
+        .eng-card:hover { border-color: var(--eng-blue); transform: translateY(-5px); }
+        .eng-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
+        .eng-card p { color: var(--text-dim); font-size: 1.1rem; }
+
+        /* Residential Premium (The core upgrade) */
+        .residential-sec { background: #000; padding: 120px 5%; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); }
+        .res-container { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; align-items: center; }
+        .res-content { flex: 1; min-width: 350px; }
+        .res-content h2 { font-size: 3.2rem; font-weight: 900; line-height: 1.2; margin-bottom: 25px; }
+        .res-content p { color: var(--text-dim); font-size: 1.2rem; margin-bottom: 40px; }
+        
+        .feature-box { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 30px; border-radius: 15px; margin-bottom: 20px; transition: 0.3s; }
+        .feature-box:hover { border-color: var(--primary-gold); }
+        .feature-box h4 { font-size: 1.5rem; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .feature-box p { color: #aaa; font-size: 1.05rem; line-height: 1.6; }
+        
+        .res-images { flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .res-images img { width: 100%; height: 300px; object-fit: cover; border-radius: 15px; filter: grayscale(20%); transition: 0.5s; }
+        .res-images img:hover { filter: grayscale(0); transform: scale(1.02); }
+
+        /* Massive Gallery */
+        .gallery-sec { padding: 100px 2%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .gal-item { height: 350px; border-radius: 10px; overflow: hidden; position: relative; }
+        .gal-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.6s; }
+        .gal-item:hover img { filter: brightness(1.1) contrast(110%); transform: scale(1.05); }
+
+        /* Contact Form */
+        .contact-sec { padding: 120px 5%; background: linear-gradient(to top, #000, var(--bg)); }
+        .form-wrapper { max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-glass); padding: 60px; border-radius: 30px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: span 2; }
+        
+        label { display: block; font-size: 0.9rem; color: var(--primary-gold); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #222; background: #030508; color: #fff; font-size: 1.1rem; outline: none; transition: 0.3s; }
+        input:focus, textarea:focus, select:focus { border-color: var(--primary-gold); }
+
+        .btn-submit { background: var(--primary-gold); color: #000; padding: 20px; width: 100%; border-radius: 12px; border: none; font-size: 1.2rem; font-weight: 900; cursor: pointer; margin-top: 20px; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-submit:hover { background: #fff; }
+
+        /* Footer */
+        footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border-glass); background: #000; }
+        .wa-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 1000; }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .res-container { flex-direction: column; }
+            .form-wrapper { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <div class="logo">ART<span>FLOW</span></div>
+            <div class="logo-sub">Engineering & Luxury</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="badge-premium reveal">EXECUTIVE STANDARDS</div>
+        <h1 class="reveal">הנדסה של איכות.<br>גימור של אומנות.</h1>
+        <h2 class="reveal">סטנדרט בנייה בלתי מתפשר.</h2>
+        <p class="reveal">מקבוצת הנדסה לתשתיות כבדות ועד לביצוע כירורגי של פרויקטי יוקרה ושיפוצי פרימיום במגזר הפרטי.</p>
+        <a href="#contact" class="btn-gold reveal">Start Your Project</a>
+    </section>
+
+    <section class="residential-sec">
+        <div class="res-container">
+            <div class="res-content">
+                <span class="eng-sub">Premium Residential</span>
+                <h2>אדריכלות פנים ושיפוצי יוקרה</h2>
+                <p>אנחנו מביאים את הסטנדרט והעוצמה של העולם ההנדסי – אל תוך פרויקטים פרטיים. רמת גימור של מלון חמישה כוכבים, עם תשתיות שמחזיקות לדורות.</p>
+                
+                <div class="feature-box">
+                    <h4><span style="color: var(--primary-gold);">✦</span> חדרי רחצה וספא ביתי</h4>
+                    <p>החלפה מלאה של מערכות המים בצנרת <strong>מולטי גולד (Multi-Gold) מקורית</strong> ללחץ אופטימלי ותקינות ארוכת טווח. איטום אדריכלי, ניקוז נסתר וחיפוי אריחי ענק בגימור מילימטרי.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <h4><span style="color: var(--primary-gold);">✦</span> פרויקטים "עד מפתח"</h4>
+                    <p>ליווי מלא של שיפוץ וילות ופנטהאוזים. עבודות גבס, הנמכות תקרה דקורטיביות, והטמעת מערכות חכמות כגון <strong>אינדוקציה נסתרת בשיש</strong> ומיזוג אוויר סמוי.</p>
+                </div>
+            </div>
+            
+            <div class="res-images">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=600" alt="חדר רחצה בוטיק">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=600" alt="סלון יוקרתי">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600" alt="אינדוקציה ושיש">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600" alt="בריכת אינסוף">
+            </div>
+        </div>
+    </section>
+
+    <section class="engineering-sec">
+        <div class="section-header">
+            <span class="eng-sub">Core Divisions</span>
+            <h2>חטיבות ההנדסה והתשתיות</h2>
+        </div>
+        <div class="grid-3">
+            <div class="eng-card">
+                <h3>💧 Heavy Infrastructure</h3>
+                <h4 style="color: #fff; margin-bottom: 10px;">תשתיות וביוב</h4>
+                <p>עבודות עפר מורכבות למבני תעשייה ומסחר. תכנון והנחת קווי תיעול, ביוב וניקוז עמוקים, תוך שימוש בכלי צמ"ה כבדים ומערכות לייזר לשיפוע מדויק.</p>
+            </div>
+            <div class="eng-card">
+                <h3>🔥 Fire Protection</h3>
+                <h4 style="color: #fff; margin-bottom: 10px;">ספרינקלרים וכיבוי אש</h4>
+                <p>מערכות בטיחות אש בסטנדרט תעשייתי. תכנון, הקמה ואישור של צנרת לחץ עליון וחדרי משאבות לפי תקני ה-NFPA המחמירים ביותר.</p>
+            </div>
+            <div class="eng-card">
+                <h3>❄️ HVAC Systems</h3>
+                <h4 style="color: #fff; margin-bottom: 10px;">מיזוג ובקרת אקלים</h4>
+                <p>הקמת מערכות מיזוג אוויר מתקדמות - ממערכות VRF נסתרות לווילות, ועד לצ'ילרים מסיביים ויחידות טיפול באוויר לחללים מסחריים.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-sec">
+        <div class="section-header">
+            <span class="eng-sub">Our Portfolio</span>
+            <h2 style="color: #fff;">ביצוע בשטח</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1541976844346-f18aeac57b06?q=80&w=800" alt="וילה בבניה"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800" alt="גמר פרימיום"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" alt="צמה הנדסה"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800" alt="צנרת מיזוג תעשייתית"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800" alt="וילת יוקרה"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="שלד הנדסי"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800" alt="עיצוב פנים נקי"></div>
+            <div class="gal-item"><img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800" alt="צנרת ספרינקלרים"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-sec">
+        <div class="form-wrapper">
+            <span class="eng-sub" style="text-align: center;">Digital Reception</span>
+            <h2 style="text-align: center; font-size: 2.8rem; font-weight: 900; margin-bottom: 40px;">תיאום פגישת ייעוץ</h2>
+            
+            <form action="https://formspree.io/f/tzmr2003@gmail.com" method="POST">
+                <div class="form-grid">
+                    <div>
+                        <label>שם מלא / חברה (Full Name)</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div>
+                        <label>טלפון נייד (Phone)</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="full-width">
+                        <label>סוג הפרויקט (Project Type)</label>
+                        <select name="project_type" required>
+                            <option value="" disabled selected>בחרו מתוך הרשימה...</option>
+                            <optgroup label="מגזר פרטי - שיפוצי פרימיום">
+                                <option value="חדר_רחצה_יוקרתי">שיפוץ חדר רחצה (מולטי גולד ואיטום)</option>
+                                <option value="שיפוץ_וילה">שיפוץ בית/וילה "עד מפתח"</option>
+                                <option value="גמר_ואדריכלות">עבודות גמר ומערכות נסתרות</option>
+                            </optgroup>
+                            <optgroup label="מגזר עסקי - הנדסה ותשתיות">
+                                <option value="תשתיות_עפר">תשתיות צמ"ה וביוב</option>
+                                <option value="מערכות_אש">כיבוי אש וספרינקלרים</option>
+                                <option value="מיזוג_מרכזי">בקרת אקלים ומיזוג VRF</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="full-width">
+                        <label>מפרט הפרויקט (Project Details)</label>
+                        <textarea name="details" rows="5" placeholder="ציינו מיקום, לו״ז משוער ודרישות טכניות מיוחדות..."></textarea>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="_subject" value="Art Flow - New Executive Lead">
+                <input type="hidden" name="_captcha" value="false">
+
+                <button type="submit" class="btn-submit">Submit Request / שליחת פנייה</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">ART<span>FLOW</span></div>
+        <p style="margin: 15px 0; color: #fff;">הנדסה של איכות. גימור של אומנות.</p>
+        <p style="font-size: 0.9rem; letter-spacing: 1px;">PREMIUM RESIDENTIAL | INDUSTRIAL ENGINEERING</p>
+        <p style="margin-top: 40px; font-size: 0.8rem;">&copy; 2026 Art Flow Group. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/972500000000" class="wa-float" target="_blank">
+        <svg width="35" height="35" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.96L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    </a>
+
+</body>
+</html>
