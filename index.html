@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Art Flow Group | הנדסה, תשתיות ושיפוצי פרימיום</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. משתנים והגדרות בסיס
+           ========================================= */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-surface: #121212;
+            --bg-surface-light: #1e1e1e;
+            
+            /* צבעים - שילוב של זהב יוקרתי (לפרטי) וכחול הנדסי (לתעשייתי) */
+            --gold-premium: #d4af37;
+            --gold-light: #f3e5ab;
+            --blue-engineer: #2563eb;
+            --cyan-hvac: #06b6d4;
+            --red-fire: #ef4444;
+            
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Assistant', sans-serif; scroll-behavior: smooth; }
+        
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+
+        /* =========================================
+           2. מסך טעינה יוקרתי (Loader)
+           ========================================= */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 99999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            animation: fadeOutLoader 2s forwards 1.5s;
+        }
+        .loader-text { font-size: 2rem; font-weight: 900; color: var(--gold-premium); letter-spacing: 5px; margin-bottom: 20px; animation: pulseText 1s infinite alternate; }
+        .progress-bar { width: 200px; height: 4px; background: #333; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--gold-premium); width: 0%; animation: fillProgress 1.5s forwards ease-in-out; }
+        
+        @keyframes fadeOutLoader { to { opacity: 0; visibility: hidden; } }
+        @keyframes pulseText { from { opacity: 0.5; } to { opacity: 1; } }
+        @keyframes fillProgress { to { width: 100%; } }
+
+        /* =========================================
+           3. הדר וניווט
+           ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 15px 30px;
+            background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color); z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 2rem; font-weight: 900; color: #fff; letter-spacing: 2px; }
+        .logo span { color: var(--gold-premium); }
+        
+        .nav-menu { display: flex; gap: 25px; list-style: none; }
+        .nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--gold-premium); }
+
+        /* =========================================
+           4. מסך פתיחה מפלצתי (Hero)
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), var(--bg-dark)),
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000') center/cover fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+        }
+        .hero-badge {
+            background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold-premium);
+            color: var(--gold-light); padding: 8px 20px; border-radius: 50px;
+            font-weight: 700; margin-bottom: 30px; font-size: 1.1rem;
+        }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 25px; }
+        .hero p { font-size: clamp(1.2rem, 3vw, 1.5rem); color: #ccc; max-width: 900px; margin-bottom: 50px; font-weight: 300; }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-premium), #b8860b);
+            color: #000; padding: 20px 50px; border-radius: 50px; text-decoration: none;
+            font-size: 1.3rem; font-weight: 900; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease; border: none; cursor: pointer;
+        }
+        .btn-gold:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); }
+
+        /* =========================================
+           5. המגזר הפרטי - שיפוצי יוקרה
+           ========================================= */
+        .premium-residential { padding: 100px 20px; background: var(--bg-surface); border-bottom: 1px solid var(--border-color); }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 3.5rem; font-weight: 900; color: #fff; margin-bottom: 15px; }
+        .section-header p { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+
+        .luxury-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        
+        .luxury-card {
+            background: var(--bg-surface-light); border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border-color); transition: 0.5s; position: relative;
+        }
+        .luxury-card:hover { border-color: var(--gold-premium); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .luxury-img { width: 100%; height: 280px; object-fit: cover; transition: 0.5s; filter: brightness(0.8); }
+        .luxury-card:hover .luxury-img { filter: brightness(1); transform: scale(1.05); }
+        
+        .luxury-content { padding: 35px; position: relative; z-index: 2; background: var(--bg-surface-light); }
+        .luxury-content h3 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; font-weight: 800; }
+        .luxury-content p { color: #bbb; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.8; }
+        
+        .feature-list { list-style: none; margin-bottom: 20px; }
+        .feature-list li { margin-bottom: 8px; color: #eee; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .feature-list li::before { content: '✔'; color: var(--gold-premium); }
+
+        /* =========================================
+           6. המגזר העסקי - הנדסה ותשתיות
+           ========================================= */
+        .engineering-division { padding: 100px 20px; background: #050505; }
+        .eng-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+        
+        .eng-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 40px; border-radius: 15px; transition: 0.4s; }
+        .eng-card:hover { background: #111; }
+        
+        /* צבעים לחטיבות ההנדסה */
+        .eng-infra { border-top: 4px solid var(--blue-engineer); }
+        .eng-fire { border-top: 4px solid var(--red-fire); }
+        .eng-hvac { border-top: 4px solid var(--cyan-hvac); }
+        
+        .eng-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .eng-infra h3 { color: var(--blue-engineer); }
+        .eng-fire h3 { color: var(--red-fire); }
+        .eng-hvac h3 { color: var(--cyan-hvac); }
+        
+        .eng-card p { color: #999; line-height: 1.7; font-size: 1.05rem; }
+
+        /* =========================================
+           7. תהליך העבודה (The Process)
+           ========================================= */
+        .process-area { padding: 80px 20px; background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .timeline { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+        .timeline-item { display: flex; gap: 30px; align-items: flex-start; background: #1a1a1a; padding: 30px; border-radius: 15px; border-right: 4px solid var(--gold-premium); }
+        .time-num { font-size: 3.5rem; font-weight: 900; color: rgba(212, 175, 55, 0.3); line-height: 0.8; }
+        .time-content h4 { font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+        .time-content p { color: #aaa; }
+
+        /* =========================================
+           8. גלריה משולבת
+           ========================================= */
+        .gallery-section { padding: 100px 20px; background: #000; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; max-width: 1600px; margin: 0 auto; }
+        .gal-img { width: 100%; height: 300px; object-fit: cover; filter: grayscale(30%); transition: 0.5s; cursor: pointer; }
+        .gal-img:hover { filter: grayscale(0%); transform: scale(1.03); z-index: 10; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
+        /* =========================================
+           9. טופס פניות חכם (Connected to Formspree)
+           ========================================= */
+        .contact-section { padding: 100px 20px; background: linear-gradient(to bottom, #000, #0a0a0a); }
+        .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-surface); padding: 50px; border-radius: 30px; border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .contact-container h2 { text-align: center; font-size: 2.5rem; color: var(--gold-light); margin-bottom: 10px; }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--gold-premium); font-weight: 600; font-size: 1.1rem; }
+        input, select, textarea {
+            width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #333;
+            background: #000; color: #fff; font-size: 1.1rem; outline: none; transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold-premium); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+
+        /* =========================================
+           10. פוטר וכפתורים צפים
+           ========================================= */
+        footer { padding: 60px 20px; text-align: center; background: #050505; border-top: 1px solid #111; }
+        .footer-text { color: #666; margin-top: 30px; font-size: 0.9rem; }
+        
+        .float-wa {
+            position: fixed; bottom: 30px; left: 30px; background: #25d366; width: 70px; height: 70px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 1000; transition: 0.4s;
+        }
+        .float-wa:hover { transform: scale(1.1); background: #20b858; }
+        
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 3.2rem; }
+            .contact-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-text">ART FLOW</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <header>
+        <div class="logo">ART<span>FLOW</span></div>
+        <ul class="nav-menu">
+            <li><a href="#residential">שיפוצי פרימיום</a></li>
+            <li><a href="#engineering">תשתיות ומיזוג</a></li>
+            <li><a href="#gallery">גלריה</a></li>
+            <li><a href="#contact">צור קשר</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">חברת הנדסה וביצוע פרויקטים</div>
+        <h1>מבנים את המחר.<br>מעצבים את היוקרה.</h1>
+        <p>מקבוצת הנדסה לתשתיות כבדות ועד לאדריכלות פנים ושיפוצי פרימיום לבתים פרטיים. כשהכוח ההנדסי פוגש רמת גימור של מלון חמישה כוכבים.</p>
+        <a href="#contact" class="btn-gold">לתיאום פגישת ייעוץ</a>
+    </section>
+
+    <section id="residential" class="premium-residential">
+        <div class="section-header">
+            <h2>המגזר הפרטי: שיפוצי פרימיום</h2>
+            <p>אנחנו לא "שיפוצניקים". אנחנו מביאים את הסטנדרט והדיוק של פרויקטים תעשייתיים ענקיים – היישר אל תוך הבית שלכם.</p>
+        </div>
+        
+        <div class="luxury-grid">
+            <div class="luxury-card">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800" class="luxury-img" alt="עיצוב חדר רחצה">
+                <div class="luxury-content">
+                    <h3>חדרי רחצה וספא ביתי</h3>
+                    <p>החלפה ושדרוג קומפלט של חדרי אמבטיה. החלפת תשתיות אינסטלציה מיושנות בצנרת SP תקנית, איטום רב-שכבתי וגימור אסתטי מושלם.</p>
+                    <ul class="feature-list">
+                        <li>אינטרפוץ וכלים סניטריים יוקרתיים</li>
+                        <li>מקלחונים חכמים וניקוז נסתר</li>
+                        <li>חיפוי אריחי ענק (גרניט פורצלן)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="luxury-card">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800" class="luxury-img" alt="שיפוץ בית קומפלט">
+                <div class="luxury-content">
+                    <h3>שיפוץ קומפלט (עד מפתח)</h3>
+                    <p>מייקאובר טוטאלי לנכס. אנחנו הורסים, בונים, מחליפים תשתיות מים וחשמל, ומבצעים עבודות גמר לפי תוכניות אדריכליות מדויקות.</p>
+                    <ul class="feature-list">
+                        <li>חלוקת חללים בקירות גבס ובלוקים</li>
+                        <li>הנמכות תקרה ותאורה נסתרת</li>
+                        <li>ריצוף פנים וחוץ פרימיום</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="luxury-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800" class="luxury-img" alt="שיפוץ מטבח וסלון">
+                <div class="luxury-content">
+                    <h3>מערכות פנים ומיזוג</h3>
+                    <p>שילוב מערכות חכמות בתוך עיצוב נקי. תעלות מיזוג אוויר נסתרות (VRF) שמתמזגות עם עיצוב הבית בלי לפגוע באסתטיקה.</p>
+                    <ul class="feature-list">
+                        <li>מיזוג אוויר נסתר ודקורטיבי</li>
+                        <li>הכנת תשתיות למטבחי יוקרה</li>
+                        <li>צבע, שפכטל אמריקאי וטקסטורות</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engineering" class="engineering-division">
+        <div class="section-header">
+            <h2 style="color: #fff;">חטיבות ההנדסה (מגזר תעשייתי)</h2>
+            <p>הכוח הכבד שלנו. פתרונות מורכבים לחניונים, מוסדות ומבני ציבור.</p>
+        </div>
+        
+        <div class="eng-grid">
+            <div class="eng-card eng-infra">
+                <h3>💧 תשתיות וביוב</h3>
+                <p>עבודות עפר, הנחת קווי עומק, תיעול וניקוז למבנים גדולים. שימוש בצמ"ה כבד, מדידות לייזר ואבטחת זרימה.</p>
+            </div>
+            <div class="eng-card eng-fire">
+                <h3>🔥 כיבוי אש וספרינקלרים</h3>
+                <p>הקמת מערכות לחץ גבוה, חדרי משאבות וצנרת פלדה תקנית בהתאם לדרישות NFPA וכיבוי אש.</p>
+            </div>
+            <div class="eng-card eng-hvac">
+                <h3>❄️ מערכות מיזוג וצ'ילרים</h3>
+                <p>בקרת אקלים למפעלים. הקמת פתרונות קירור וחימום מורכבים להבטחת תנאי סביבה אופטימליים וחיסכון בחשמל.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-area">
+        <div class="section-header">
+            <h2 style="color: #fff;">השיטה של Art Flow</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time-num">1</div>
+                <div class="time-content">
+                    <h4>פגישת היכרות ומדידות</h4>
+                    <p>מגיעים לשטח עם ציוד לייזר מודרני, מבינים את החזון שלכם, ולוקחים מידות מדויקות למילימטר.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-num">2</div>
+                <div class="time-content">
+                    <h4>תמחור שקוף ולו"ז קשיח</h4>
+                    <p>הגשת כתב כמויות מפורט. בלי "הפתעות" באמצע הפרויקט. קובעים תאריך כניסה ותאריך יציאה.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-num">3</div>
+                <div class="time-content">
+                    <h4>ביצוע וניהול כירורגי</h4>
+                    <p>צוותים אורגניים שלנו מבצעים את העבודה בשטח תחת פיקוח קפדני, תוך שמירה על ניקיון וסדר ככל הניתן.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-num">4</div>
+                <div class="time-content">
+                    <h4>מסירה ואחריות</h4>
+                    <p>בדיקת מערכות מקיפה, פוליש סופי, ומסירת מפתח בראש שקט יחד עם תעודת אחריות על הביצוע.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="section-header"><h2 style="color: #fff;">פרויקטים נבחרים</h2></div>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800" class="gal-img" alt="חדר רחצה">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" class="gal-img" alt="צמ״ה">
+            <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=800" class="gal-img" alt="פנים הבית">
+            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800" class="gal-img" alt="צנרת אש">
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800" class="gal-img" alt="מיזוג תעשייתי">
+            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800" class="gal-img" alt="עיצוב יוקרה">
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>מוכנים לצאת לדרך?</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 40px;">השאירו פרטים ונחזור אליכם לשיחת ייעוץ ראשונית.</p>
+            
+            <form action="https://formspree.io/f/tzmr2003@gmail.com" method="POST">
+                <div class="input-group">
+                    <label>שם מלא / משפחה</label>
+                    <input type="text" name="שם" placeholder="לדוגמה: משפחת כהן או שם חברה" required>
+                </div>
+                <div class="input-group">
+                    <label>מספר טלפון נייד</label>
+                    <input type="tel" name="טלפון" placeholder="050-000-0000" required>
+                </div>
+                <div class="input-group">
+                    <label>סוג הפרויקט שלכם</label>
+                    <select name="סוג_פרויקט" required>
+                        <option value="" disabled selected>בחרו מתוך הרשימה...</option>
+                        <optgroup label="המגזר הפרטי - מגורים">
+                            <option value="שיפוץ חדר רחצה">שיפוץ חדר רחצה / ספא</option>
+                            <option value="שיפוץ קומפלט לבית">שיפוץ בית קומפלט (עד מפתח)</option>
+                            <option value="עבודות גמר יוקרה">עבודות גמר / אדריכלות פנים</option>
+                        </optgroup>
+                        <optgroup label="המגזר העסקי - תשתיות">
+                            <option value="תשתיות וביוב עמוק">תשתיות וביוב (צמ"ה)</option>
+                            <option value="מערכות כיבוי אש">מערכות ספרינקלרים וכיבוי אש</option>
+                            <option value="מיזוג תעשייתי">מיזוג אוויר מסחרי / VRF
