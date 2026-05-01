@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Art Flow Group | Executive Engineering & Premium Design</title>
+    
+    <meta name="description" content="Art Flow Group - קבוצת הנדסה וביצוע פרויקטי יוקרה. מומחים בשיפוצי פרימיום, חדרי רחצה, תשתיות, ספרינקלרים ומיזוג אוויר.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. PREMIUM VARIABLES
+           ========================================= */
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f9f1d8;
+            --gold-dark: #aa8929;
+            --bg-master: #020408;
+            --bg-panel: #0a0d14;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(10, 13, 20, 0.6);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --blue-eng: #1e3a8a;
+            --red-fire: #991b1b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Assistant', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-master); color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+
+        /* =========================================
+           2. TYPOGRAPHY & ACCESSORIES
+           ========================================= */
+        .eng-tag { font-family: 'Arial', sans-serif; font-size: 0.75rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .gradient-text { background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-up { animation: fadeIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+        /* =========================================
+           3. HEADER (GLASSMORPHISM)
+           ========================================= */
+        header {
+            position: fixed; width: 100%; top: 0; z-index: 9999;
+            background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border); padding: 15px 4%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo-container { display: flex; flex-direction: column; }
+        .logo { font-size: 2.2rem; font-weight: 900; letter-spacing: 2px; line-height: 1; }
+        .logo span { color: var(--gold); }
+        .logo-sub { font-size: 0.75rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-top: 4px; }
+
+        /* =========================================
+           4. HERO SECTION (THE SHOWCASE)
+           ========================================= */
+        .hero {
+            min-height: 100vh; position: relative;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 5%; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(to bottom, rgba(2,4,8,0.4), var(--bg-master)), 
+                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000') center/cover no-repeat;
+            filter: brightness(0.7); animation: slowZoom 25s infinite alternate;
+        }
+        @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+
+        .badge-exclusive { border: 1px solid var(--gold); padding: 8px 25px; border-radius: 50px; color: var(--gold-light); font-weight: 600; letter-spacing: 2px; margin-bottom: 30px; font-size: 0.85rem; background: rgba(212, 175, 55, 0.05); }
+        .hero h1 { font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 900; line-height: 1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+        .hero h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; color: #ddd; margin-bottom: 30px; }
+        .hero p { font-size: 1.3rem; color: var(--text-dim); max-width: 800px; margin-bottom: 50px; font-weight: 400; line-height: 1.8; }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000; padding: 20px 50px; border-radius: 50px;
+            font-size: 1.2rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); transition: all 0.4s ease; border: 1px solid #ffeba1;
+        }
+        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6); }
+
+        /* =========================================
+           5. RESIDENTIAL PREMIUM (VILLAS & BATHROOMS)
+           ========================================= */
+        .residential-sec { padding: 120px 5%; background: var(--bg-panel); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .section-header { text-align: center; margin-bottom: 70px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .section-header p { font-size: 1.25rem; color: var(--text-dim); }
+
+        .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1500px; margin: 0 auto; }
+        
+        .res-card { background: var(--bg-master); border-radius: 25px; border: 1px solid var(--glass-border); overflow: hidden; transition: 0.4s; position: relative; }
+        .res-card:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 20px 50px rgba(212,175,55,0.1); }
+        
+        .res-img-wrap { width: 100%; height: 350px; overflow: hidden; position: relative; }
+        .res-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; filter: brightness(0.7); }
+        .res-card:hover .res-img-wrap img { transform: scale(1.08); filter: brightness(1.1); }
+        .res-img-badge { position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); padding: 5px 15px; border-radius: 20px; color: var(--gold); font-weight: 700; font-size: 0.85rem; border: 1px solid var(--gold); }
+        
+        .res-content { padding: 40px; }
+        .res-content h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; color: #fff; }
+        .res-content p { color: var(--text-dim); font-size: 1.15rem; margin-bottom: 25px; line-height: 1.7; }
+        
+        .tech-list { list-style: none; }
+        .tech-list li { display: flex; align-items: flex-start; gap: 15px; font-weight: 600; color: #e2e8f0; font-size: 1.1rem; margin-bottom: 15px; line-height: 1.5; }
+        .tech-list li::before { content: '✔'; color: var(--gold); font-size: 1.2rem; }
+
+        /* =========================================
+           6. ENGINEERING DIVISIONS (INDUSTRIAL)
+           ========================================= */
+        .engineering-sec { padding: 120px 5%; background: var(--bg-master); }
+        .eng-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1500px; margin: 0 auto; }
+        
+        .eng-box { background: var(--bg-panel); border: 1px solid #1a1a1a; border-radius: 20px; padding: 50px 40px; transition: 0.4s; position: relative; overflow: hidden; }
+        .eng-box::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: var(--text-dim); transition: 0.4s; }
+        .eng-box:hover { background: #11151d; transform: translateY(-5px); }
+        
+        .eng-box.infra:hover::before { background: var(--blue-eng); }
+        .eng-box.fire:hover::before { background: var(--red-fire); }
+        .eng-box.hvac:hover::before { background: #06b6d4; }
+        
+        .eng-box h3 { font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: #fff; }
+        .eng-box p { color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; }
+
+        /* =========================================
+           7. MASSIVE GALLERY (THE PORTFOLIO)
+           ========================================= */
+        .gallery-sec { padding: 80px 2%; background: #000; }
+        .masonry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; max-width: 1800px; margin: 0 auto; }
+        .masonry-item { height: 400px; border-radius: 12px; overflow: hidden; position: relative; }
+        .masonry-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%) brightness(0.6); transition: 0.6s ease; }
+        .masonry-item:hover img { filter: grayscale(0%) brightness(1.1); transform: scale(1.05); }
+        .masonry-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 20px 20px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff; opacity: 0; transition: 0.4s; }
+        .masonry-item:hover .masonry-overlay { opacity: 1; }
+        .masonry-overlay h4 { font-size: 1.4rem; font-weight: 800; color: var(--gold); }
+
+        /* =========================================
+           8. DIGITAL RECEPTION (AJAX CONTACT FORM)
+           ========================================= */
+        .contact-sec { padding: 150px 5%; background: linear-gradient(to top, #000, var(--bg-panel)); position: relative; }
+        .form-wrapper { max-width: 900px; margin: 0 auto; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); padding: 70px; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+        
+        .form-wrapper h2 { text-align: center; font-size: 3.2rem; font-weight: 900; margin-bottom: 10px; }
+        .form-wrapper p { text-align: center; color: var(--text-dim); font-size: 1.2rem; margin-bottom: 50px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .full-w { grid-column: span 2; }
+        
+        label { display: block; font-size: 0.9rem; color: var(--gold); margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        input, select, textarea { width: 100%; padding: 20px; border-radius: 15px; border: 1px solid #333; background: rgba(0,0,0,0.6); color: #fff; font-size: 1.15rem; outline: none; transition: 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); background: rgba(0,0,0,0.9); }
+        
+        .btn-submit { background: var(--gold); color: #000; padding: 22px; width: 100%; border-radius: 15px; border: none; font-size: 1.4rem; font-weight: 900; cursor: pointer; margin-top: 30px; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-submit:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+        .btn-submit:disabled { background: #555; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* הודעת סטטוס מעוצבת */
+        #status-msg { margin-top: 25px; padding: 20px; border-radius: 12px; display: none; text-align: center; font-weight: 800; font-size: 1.2rem; animation: fadeIn 0.5s ease; }
+        .status-success { background: rgba(37, 211, 102, 0.15); color: #25d366; border: 1px solid #25d366; }
+        .status-error { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid #ef4444; }
+
+        /* =========================================
+           9. FOOTER & FLOATING WHATSAPP
+           ========================================= */
+        footer { padding: 80px 5%; text-align: center; border-top: 1px solid #111; background: #000; }
+        .footer-logo { font-size: 2.5rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
+        .wa-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); transition: 0.4s; }
+        .wa-float:hover { transform: scale(1.1) rotate(-5deg); background: #20b858; }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-w { grid-column: span 1; }
+            .hero h1 { font-size: 3.5rem; }
+            .form-wrapper { padding: 40px 20px; }
+            .section-header h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo">ART<span>FLOW</span></div>
+            <div class="logo-sub">Engineering & Luxury</div>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="#contact" style="color: var(--gold); text-decoration: none; font-weight: 700; border: 1px solid var(--gold); padding: 8px 20px; border-radius: 20px; font-size: 0.9rem;">צור קשר</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="badge-exclusive animate-up">PREMIUM EXECUTION STANDARDS</div>
+        <h1 class="gradient-text animate-up" style="animation-delay: 0.2s;">הנדסה של איכות.<br>גימור של אומנות.</h1>
+        <h2 class="animate-up" style="animation-delay: 0.4s;">סטנדרט בנייה בלתי מתפשר.</h2>
+        <p class="animate-up" style="animation-delay: 0.6s;">מקבוצת הנדסה לתשתיות כבדות ועד לביצוע כירורגי של פרויקטי יוקרה ושיפוצי פרימיום. השילוב המושלם בין עוצמה הנדסית לאסתטיקה של מלון חמישה כוכבים.</p>
+        <div class="animate-up" style="animation-delay: 0.8s;">
+            <a href="#contact" class="btn-gold">Start Your Project</a>
+        </div>
+    </section>
+
+    <section class="residential-sec">
+        <div class="section-header">
+            <span class="eng-tag">Premium Residential</span>
+            <h2>שיפוצי יוקרה וגמר אדריכלי</h2>
+            <p>אנחנו מביאים את הסטנדרט והעוצמה של העולם ההנדסי התעשייתי אל תוך הבית שלכם. מומחיות בווילות, פנטהאוזים ובתי יוקרה בגבעת שמואל והמרכז.</p>
+        </div>
+        
+        <div class="res-grid">
+            <div class="res-card">
+                <div class="res-img-wrap">
+                    <div class="res-img-badge">Villa Spa</div>
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800" alt="חדר רחצה יוקרתי">
+                </div>
+                <div class="res-content">
+                    <h3>חדרי רחצה וספא ביתי</h3>
+                    <p>הקמה וחידוש חללי רחצה בסטנדרט של מלון בוטיק. החלפה מלאה של מערכות המים והביוב בצנרת <strong>מולטי גולד (Multi-Gold) מקורית</strong> ללחץ אופטימלי ועמידות לדורות.</p>
+                    <ul class="tech-list">
+                        <li>התקנת צנרת Multi-Gold תלת-שכבתית.</li>
+                        <li>איטום אדריכלי מקצועי ושימוש ב<strong>סיליקון סניטרי חדשני ותקני</strong> למניעת עובש ופטריות.</li>
+                        <li>מקלחונים חכמים, ניקוז קווי נסתר וחיפוי אריחי ענק בגימור מילימטרי.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="res-card">
+                <div class="res-img-wrap">
+                    <div class="res-img-badge">Premium Finish</div>
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800" alt="גימור וסלון יוקרתי">
+                </div>
+                <div class="res-content">
+                    <h3>עבודות גמר ומערכות נסתרות</h3>
+                    <p>השלב שבו התשתית פוגשת אמנות. ביצוע עבודות פנים ברמת פרימיום, תוך שילוב טכנולוגיות מתקדמות המוטמעות בצורה בלתי מורגשת בחלל.</p>
+                    <ul class="tech-list">
+                        <li>הכנה והטמעת <strong>אינדוקציה נסתרת בתוך משטחי שיש</strong> וגרניט פורצלן.</li>
+                        <li>הנמכות תקרה דקורטיביות וגבס אדריכלי למערכות מיזוג VRF סמויות.</li>
+                        <li>עבודות שפכטל, צבע וטקסטורות יוקרה במסירת "עד מפתח".</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="engineering-sec">
+        <div class="section-header">
+            <span class="eng-tag">Core Infrastructure</span>
+            <h2>חטיבות ההנדסה התעשייתיות</h2>
+            <p>הכוח הכבד שלנו. פתרונות מורכבים לחניונים, מפעלים ומבני ציבור.</p>
+        </div>
+        
+        <div class="eng-container">
+            <div class="eng-box infra">
+                <span class="eng-tag">Earthworks & Piping</span>
+                <h3>תשתיות וביוב עמוק</h3>
+                <p>הקמת מערכות תיעול, מים וביוב בקטרים מסחריים. ניהול כלי צמ"ה כבדים, עבודות עומק כירורגיות, ושימוש במערכות לייזר לחישוב שיפועים וזרימה מושלמת ללא כשלים.</p>
+            </div>
+            <div class="eng-box fire">
+                <span class="eng-tag">Fire Safety</span>
+                <h3>כיבוי אש וספרינקלרים</h3>
+                <p>תכנון והתקנת מערכות כיבוי אש מקיפות. פריסת צנרת לחץ עליון עשויה פלדה, והקמת חדרי משאבות אימתניים, הכל בפיקוח ובהתאמה מלאה לתקני הבטיחות וה-NFPA.</p>
+            </div>
+            <div class="eng-box hvac">
+                <span class="eng-tag">Climate Control</span>
+                <h3>מיזוג אוויר ו-HVAC</h3>
+                <p>הקמת מערכות אקלים מרכזיות וצ'ילרים. תכנון זרימת אוויר אופטימלית דרך תעלות פח מבודדות, ושליטה מלאה בטמפרטורה ליעילות אנרגטית מקסימלית למבנים תעשייתיים.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-sec">
+        <div class="section-header">
+            <span class="eng-tag">Visual Portfolio</span>
+            <h2 style="color: #fff;">ביצוע הלכה למעשה</h2>
+        </div>
+        <div class="masonry-grid">
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1541976844346-f18aeac57b06?q=80&w=800">
+                <div class="masonry-overlay"><h4>וילות יוקרה בבנייה</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800">
+                <div class="masonry-overlay"><h4>בריכות אינסוף</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800">
+                <div class="masonry-overlay"><h4>עבודות עפר וצמ"ה</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800">
+                <div class="masonry-overlay"><h4>צנרת מיזוג תעשייתית</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800">
+                <div class="masonry-overlay"><h4>אדריכלות פנים</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800">
+                <div class="masonry-overlay"><h4>חדרי רחצה וילה-סטייל</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800">
+                <div class="masonry-overlay"><h4>מערכות ספרינקלרים</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800">
+                <div class="masonry-overlay"><h4>הנדסת שלד מורכבת</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-sec">
+        <div class="form-wrapper">
+            <span class="eng-tag" style="text-align: center;">Digital Reception</span>
+            <h2 style="text-align: center; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">המזכירות הדיגיטלית</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">השאירו פרטים מדויקים. המערכת תשגר את הפנייה ישירות לדסק מנהל הפרויקטים שלנו.</p>
+            
+            <form id="premium-form">
+                <div class="form-grid">
+                    <div>
+                        <label>שם מלא / חברה (Full Name)</label>
+                        <input type="text" name="name" placeholder="ישראל ישראלי" required>
+                    </div>
+                    <div>
+                        <label>טלפון נייד (Phone)</label>
+                        <input type="tel" name="phone" placeholder="050-000-0000" required>
+                    </div>
+                    <div class="full-w">
+                        <label>סוג הפרויקט (Project Type)</label>
+                        <select name="project_type" required>
+                            <option value="" disabled selected>בחרו מתוך הרשימה...</option>
+                            <optgroup label="מגזר פרטי - שיפוצי יוקרה">
+                                <option value="חדר_רחצה_יוקרתי">שיפוץ חדר רחצה (מולטי גולד, סיליקון ואיטום)</option>
+                                <option value="שיפוץ_וילה">שיפוץ קומפלט לווילה / פנטהאוז</option>
+                                <option value="גמר_ואדריכלות">עבודות גמר ואינדוקציה נסתרת</option>
+                            </optgroup>
+                            <optgroup label="מגזר עסקי - הנדסה">
+                                <option value="תשתיות_עפר">תשתיות וביוב עמוק (צמ"ה)</option>
+                                <option value="מערכות_אש">כיבוי אש וספרינקלרים (NFPA)</option>
+                                <option value="מיזוג_מרכזי">מיזוג אוויר ו-HVAC תעשייתי</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="full-w">
+                        <label>מיקום ופרטי הפרויקט (Details)</label>
+                        <textarea name="details" rows="5" placeholder="ציינו עיר (למשל: גבעת שמואל), לו״ז משוער ודרישות מיוחדות..."></textarea>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="_subject" value="Art Flow Group - הליד הגיע בהצלחה מהאתר!">
+
+                <button type="submit" id="submit-btn" class="btn-submit">שלח פנייה למערכת / Submit</button>
+                <div id="status-msg"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">ART<span>FLOW</span></div>
+        <p style="margin: 15px 0; color: #fff;">הנדסה של איכות. גימור של אומנות.</p>
+        <p style="font-size: 0.9rem; letter-spacing: 1px; color: var(--gold);">PREMIUM RESIDENTIAL | CORE ENGINEERING</p>
+        <p style="margin-top: 40px; font-size: 0.85rem; color: #555;">&copy; 2026 Art Flow Group. כל הזכויות שמורות.</p>
+    </footer>
+
+    <a href="https://wa.me/972500000000" class="wa-float" target="_blank">
+        <svg width="35" height="35" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.96L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    </a>
+
+    <script>
+        const form = document.getElementById('premium-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('status-msg');
+            
+            btn.innerHTML = 'משדר נתונים... / Sending...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            
+            // שליחה חרישית מאחורי הקלעים לשרת
+            fetch('https://formspree.io/f/tzmr2003@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if(response.ok) {
+                    msg.innerHTML = 'הפנייה התקבלה בהצלחה! מנהל פרויקטים יצור קשר בקרוב. ✔️';
+                    msg.className = 'status-success';
+                    msg.style.display = 'block';
+                    form.reset();
+                } else {
+                    // אם יש שגיאה, זה בדרך כלל בגלל שצריך לאשר את המייל בפעם הראשונה
+                    msg.innerHTML = 'שים לב: יש לאשר את כתובת המייל שלך בתיבת הדואר (Formspree) פעם אחת בלבד.';
+                    msg.className = 'status-error';
+                    msg.style.display = 'block';
+                }
+                btn.innerHTML = 'שלח פנייה למערכת / Submit';
+                btn.disabled = false;
+            }).catch(error => {
+                msg.innerHTML = 'שגיאת רשת. אנא פנו בוואטסאפ במקום.';
+                msg.className = 'status-error';
+                msg.style.display = 'block';
+                btn.innerHTML = 'שלח פנייה למערכת / Submit';
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
